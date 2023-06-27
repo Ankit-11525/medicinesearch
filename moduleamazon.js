@@ -1,7 +1,7 @@
 const axios = require("axios");
 const cheerio = require("cheerio");
 
-const getmedicineDescription = async (URL) => {
+const getmedicineAmazonDescription = async (URL) => {
     try {
       //   const URL = `https://www.amazon.in/s?k=aciloc&i=hpc&crid=1OSR6C5KJ804W&sprefix=aciloc%2Chpc%2C195&ref=nb_sb_noss_2`;
       const response = await axios.get(URL);
@@ -14,7 +14,7 @@ const getmedicineDescription = async (URL) => {
       let minlength = allClasses.length;
       if (minlength > 5) minlength = 5;
       for (let i = 0; i < minlength; i++) {
-        let medicinename = $(allClasses[i])
+        let medicineName = $(allClasses[i])
           .find(
             ".a-section.a-spacing-none.a-spacing-top-small.s-title-instructions-style "
           )
@@ -26,8 +26,8 @@ const getmedicineDescription = async (URL) => {
           .find("a")
           .find(".a-price>.a-offscreen")
           .text();
-        let medicineMRP = medicinePrice.split("₹")[1];
-        let medicineDiscountPrice = medicinePrice.split("₹")[2];
+        let medicineMRP = medicinePrice.split("₹")[2];
+        let medicineNewPrice = medicinePrice.split("₹")[1];
         // console.log(
         //   medicinename + " : ₹" + medicineMRP + " : ₹" + medicineDiscountPrice
         // );
@@ -40,7 +40,7 @@ const getmedicineDescription = async (URL) => {
           .find(".a-row.s-align-children-center>span")
           .text();
         // console.log(deliverydate);
-        let medicineURL = $(allClasses[i])
+        let medicineURL = "https://www.amazon.in"+$(allClasses[i])
           .find(
             ".s-product-image-container.aok-relative.s-text-center.s-image-overlay-grey.puis-image-overlay-grey.s-padding-left-small.s-padding-right-small.puis-spacing-small.s-height-equalized.puis.puis-v3dida7bcja3c91ydclkl88gxns"
           )
@@ -52,13 +52,16 @@ const getmedicineDescription = async (URL) => {
           .find("img")
           .attr("src");
         // console.log(medicineIMG);
+        let medicineSavedPrice=medicineMRP-medicineNewPrice;
         const SingleSearchResultArrForAmazonMedicine = {
-          medicinename,
-          medicineMRP,
-          medicineDiscountPrice,
-          medicinediscountpercentage,
-          deliverydate,
+          medicineName,
           medicineURL,
+          medicineMRP,
+          medicineNewPrice,
+          // medicinediscountpercentage,
+          medicineSavedPrice,
+          // deliverydate,
+          
           medicineIMG,
         };
       //   console.log(SingleSearchResultArrForAmazonMedicine);
@@ -73,4 +76,4 @@ const getmedicineDescription = async (URL) => {
     }
   };
 
-module.exports = getmedicineDescription;
+module.exports = getmedicineAmazonDescription;

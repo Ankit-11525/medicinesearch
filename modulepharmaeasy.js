@@ -77,12 +77,12 @@ const getmedicineDescriptionPharmaHelper= async(URL)=>
 
     const SingleMedicineDescription = {
       // medicineimagearr,
-      medicineURL,
       medicineName,
-      medicineQnty,
+      medicineURL,      
       medicineMRP,
       medicineNewPrice,
       medicineSavedPrice,
+      // medicineQnty,
     };
     // console.log(SingleMedicineDescription);
     return SingleMedicineDescription;

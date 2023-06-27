@@ -2,7 +2,7 @@ const express = require("express");
 const axios = require("axios");
 const cheerio = require("cheerio");
 const cors = require("cors");
-const getmedicineDescription=require('./moduleamazon');
+const getmedicineAmazonDescription=require('./moduleamazon');
 const getmedicinepharmaDescription=require('./modulepharmaeasy');
 const app = express();
 const port = 5000;
@@ -14,45 +14,23 @@ app.get("/api/medicine/:name", async (req, res) => {
   const { name } = req.params;
 
   try {
-    // const URL = `https://pharmeasy.in/search/all?name=${name}`;
-    // const response = await axios.get(URL);
-    // const html = response.data;
-    // const $ = cheerio.load(html);
+   
     const searchResults = [];
+
+
     const URL = `https://www.amazon.in/s?k=${name}&i=hpc&crid=1OSR6C5KJ804W&sprefix=aciloc%2Chpc%2C195&ref=nb_sb_noss_2`;
-    let result = [];
-    // result = await getmedicineDescription(URL);
+    let result = await getmedicineAmazonDescription(URL);
     // console.log(result);
+
+
     const pharmeasyurl=`https://pharmeasy.in/search/all?name=${name}`;
     let result2=await getmedicinepharmaDescription(pharmeasyurl);
-    // let result3=await getmedicinepharmaDescription(pharmeasyurl);
-
     // console.log(result2);
+
+
+    searchResults.push(result);
     searchResults.push(result2);
-    // searchResults.push(result3);
-
-    // searchResults.push(result);
-    // let itemlist = $(".Search_medicineLists__hM5Hk");
-    // console.log(itemlist.length);
-    // for (let i = 0; i < itemlist.length; i++) {
-    //   let medicinename = $(itemlist[i]).find("h1").text();
-    //   // console.log(medicinename);
-    //   let medicineurl = $(itemlist[i]).find("a").attr("href");
-    //   // console.log(medicineurl);
-    //   const fullURL="https://pharmeasy.in"+medicineurl;
-    //   const result = {
-    //     name: medicinename,
-    //     url:fullURL
-    //   };
-    //   const SingleMedicineDescription=await getmedicineDescription(fullURL);
-    //   // console.log(result);
-    //   searchResults.push(SingleMedicineDescription);
-    //   // console.log(searchResults.length);
-    // }
     console.log(searchResults);
-
-    // Send the search results as JSON
-
     res.json(searchResults);
   } catch (error) {
     console.error(error);

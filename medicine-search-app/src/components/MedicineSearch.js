@@ -32,11 +32,12 @@ const MedicineSearch = () => {
       <button onClick={handleSearch}>Search</button>
 
       <div>
-        {searchResults.length === 0 ? (
+        {searchResults.length === 1 ? (
           <p>No results found.</p>
         ) : (
           <div className="container">
             {searchResults.map((singleresult) => {
+              if(singleresult===null) return <div>NO Results from Amazon</div>;
               return singleresult.map((result, index) => {
                 return <Card key={index} 
                 medicineURL={result.medicineURL} 
