@@ -3,7 +3,6 @@ import axios from "axios";
 import Card from "./Card.jsx";
 import "./Cardcss.css";
 
-
 const MedicineSearch = () => {
   const [searchInput, setSearchInput] = useState("");
   const [searchResults, setSearchResults] = useState([[]]);
@@ -15,7 +14,7 @@ const MedicineSearch = () => {
         `http://localhost:5000/api/medicine/${searchInput}`
       );
       setSearchResults(response.data);
-      console.log(response.data);
+      console.log(searchResults);
     } catch (error) {
       console.error(error);
     }
@@ -33,13 +32,19 @@ const MedicineSearch = () => {
       <button onClick={handleSearch}>Search</button>
 
       <div>
-        {searchResults.length === 1 ? (
+        {searchResults.length === 0 ? (
           <p>No results found.</p>
         ) : (
-          <div className="container" >
+          <div className="container">
             {searchResults.map((singleresult) => {
               return singleresult.map((result, index) => {
-                return <Card key={index} url={result.url} name={result.data}/>;
+                return <Card key={index} 
+                medicineURL={result.medicineURL} 
+                medicineName={result.medicinename}
+                medicineQnty={result.medicineqnty}
+                medicineMRP={result.medicinemrp}
+                medicineNewPrice={result.medicinesavedPrice}                
+                 />;
               });
             })}
           </div>

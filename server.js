@@ -25,11 +25,11 @@ app.get("/api/medicine/:name", async (req, res) => {
     // console.log(result);
     const pharmeasyurl=`https://pharmeasy.in/search/all?name=${name}`;
     let result2=await getmedicinepharmaDescription(pharmeasyurl);
-    let result3=await getmedicinepharmaDescription(pharmeasyurl);
+    // let result3=await getmedicinepharmaDescription(pharmeasyurl);
 
     // console.log(result2);
     searchResults.push(result2);
-    searchResults.push(result3);
+    // searchResults.push(result3);
 
     // searchResults.push(result);
     // let itemlist = $(".Search_medicineLists__hM5Hk");
