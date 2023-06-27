@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Card from "./Card.jsx";
+import "./Cardcss.css";
+
 
 const MedicineSearch = () => {
   const [searchInput, setSearchInput] = useState("");
@@ -34,13 +36,13 @@ const MedicineSearch = () => {
         {searchResults.length === 1 ? (
           <p>No results found.</p>
         ) : (
-          <>
+          <div className="container" >
             {searchResults.map((singleresult) => {
               return singleresult.map((result, index) => {
                 return <Card key={index} url={result.url} name={result.data}/>;
               });
             })}
-          </>
+          </div>
         )}
       </div>
     </div>
