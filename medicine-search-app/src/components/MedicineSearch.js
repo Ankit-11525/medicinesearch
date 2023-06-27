@@ -40,10 +40,11 @@ const MedicineSearch = () => {
               return singleresult.map((result, index) => {
                 return <Card key={index} 
                 medicineURL={result.medicineURL} 
-                medicineName={result.medicinename}
-                medicineQnty={result.medicineqnty}
-                medicineMRP={result.medicinemrp}
-                medicineNewPrice={result.medicinesavedPrice}                
+                medicineName={result.medicineName}
+                medicineQnty={result.medicineQnty}
+                medicineMRP={result.medicineMRP}
+                medicineSavedPrice={result.medicineSavedPrice}
+                medicineNewPrice={result.medicineNewPrice}                
                  />;
               });
             })}

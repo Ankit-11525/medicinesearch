@@ -49,26 +49,26 @@ const getmedicineDescriptionPharmaHelper= async(URL)=>
 
 
 
-    const medicinename=$('.MedicineOverviewSection_medicineName__dHDQi').text();
-    // console.log("medicinename "+medicinename);
+    const medicineName=$('.MedicineOverviewSection_medicineName__dHDQi').text();
+    // console.log("medicinename "+medicineName);
     // const delivarye=$('.Edd_eddDetails__8kgLR>div').text();
     // const date=$(".Edd_eddDetails__8kgLR span").text();
     // console.log("date "+date);
 
 
-    const medicineqnty=$('.MedicineOverviewSection_measurementUnit__7m5C3').text();
-    // console.log(medicineqnty);
+    const medicineQnty=$('.MedicineOverviewSection_measurementUnit__7m5C3').text();
+    // console.log(medicineQnty);
 
 
 
-    const medicinemrp=$('.PriceInfo_striked__Hk2U_').text();
-    // console.log(medicinemrp);
+    const medicineMRP=$('.PriceInfo_striked__Hk2U_').text();
+    // console.log(medicineMRP);
 
 
 
     const medicineofferarray=$('.DescriptionTable_value__0GUMC');
-    const medicinenewPrice=$(medicineofferarray[0]).text();
-    const medicinesavedPrice=$(medicineofferarray[1]).text();
+    const medicineNewPrice=$(medicineofferarray[0]).text();
+    const medicineSavedPrice=$(medicineofferarray[1]).text();
     // console.log("medicinenewPrice : ",medicinenewPrice);
     // console.log("medicinesavedPrice : ",medicinesavedPrice);
 
@@ -78,11 +78,11 @@ const getmedicineDescriptionPharmaHelper= async(URL)=>
     const SingleMedicineDescription = {
       // medicineimagearr,
       medicineURL,
-      medicinename,
-      medicineqnty,
-      medicinemrp,
-      medicinenewPrice,
-      medicinesavedPrice,
+      medicineName,
+      medicineQnty,
+      medicineMRP,
+      medicineNewPrice,
+      medicineSavedPrice,
     };
     // console.log(SingleMedicineDescription);
     return SingleMedicineDescription;

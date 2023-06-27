@@ -6,6 +6,7 @@ const Card = ({
   medicineQnty,
   medicineMRP,
   medicineNewPrice,
+  medicineSavedPrice
 }) => {
   // const medicineName={name};
   // const medicineURL={url};
@@ -22,6 +23,7 @@ const Card = ({
         <div> Quantity : {medicineQnty}</div>
         <div> MRP : {medicineMRP}</div>
         <div> DiscountPrice : {medicineNewPrice}</div>
+        <div> You Save  : {medicineSavedPrice}</div>
         <a href={medicineURL} target="_blank" rel="noopener noreferrer">
           <button className="card-button">More in Detail</button>
         </a>
