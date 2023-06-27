@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import Card from "./Card.jsx";
 
 const MedicineSearch = () => {
   const [searchInput, setSearchInput] = useState("");
@@ -30,46 +31,16 @@ const MedicineSearch = () => {
       <button onClick={handleSearch}>Search</button>
 
       <div>
-        {searchResults.length === 0 ? (
+        {searchResults.length === 1 ? (
           <p>No results found.</p>
         ) : (
-          <ul>
-            {searchResults.forEach((singleresult, ind) => {
-              if (singleresult) {
-                if (ind === 0) {
-                  singleresult.map((result, index) => (
-                    <li key={index}>
-                      <a
-                        href={result.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        {result.data}
-                      </a>
-                    </li>
-                  ));
-                } else {
-                  singleresult.map((result, index) => (
-                    <li key={index}>
-                      {/* <a
-                        href={result.medicineURL}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        {result.medicinename}
-                      </a> */}
-                      <span>{result.medicinename}</span>
-                      <span>{result.medicineMRP}</span>
-                      <span>{result.medicineDiscountPrice}</span>
-                      <span>{result.medicinediscountpercentage}</span>
-                      <span>{result.deliverydate}</span>
-                    </li>
-                  ));
-                }
-              }
+          <>
+            {searchResults.map((singleresult) => {
+              return singleresult.map((result, index) => {
+                return <Card key={index} url={result.url} name={result.data}/>;
+              });
             })}
-           
-          </ul>
+          </>
         )}
       </div>
     </div>
