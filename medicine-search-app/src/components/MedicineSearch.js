@@ -23,6 +23,7 @@ const MedicineSearch = () => {
   return (
     <div>
       <h1>Medicine Search</h1>
+      <h1>All SearchResults for {searchInput}</h1>
       <input
         type="text"
         value={searchInput}
@@ -37,9 +38,11 @@ const MedicineSearch = () => {
         ) : (
           <div className="container">
             {searchResults.map((singleresult) => {
-              if(singleresult===null) return <div>NO Results from Amazon</div>;
+              if(singleresult===null) return <div>NO Results from Amazon(SERVER ERROR!)</div>;
               return singleresult.map((result, index) => {
                 return <Card key={index} 
+                medicineIMG={result.medicineIMG}
+                scrapFrom={result.scrapFrom}
                 medicineURL={result.medicineURL} 
                 medicineName={result.medicineName}
                 medicineQnty={result.medicineQnty}

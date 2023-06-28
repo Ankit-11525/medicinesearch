@@ -74,7 +74,7 @@ const getmedicineDescriptionPharmaHelper= async(URL)=>
 
 
     const medicineURL=URL;
-
+    let scrapFrom="Pharmaeasy.in";
     const SingleMedicineDescription = {
       // medicineimagearr,
       medicineName,
@@ -82,6 +82,7 @@ const getmedicineDescriptionPharmaHelper= async(URL)=>
       medicineMRP,
       medicineNewPrice,
       medicineSavedPrice,
+      scrapFrom
       // medicineQnty,
     };
     // console.log(SingleMedicineDescription);
